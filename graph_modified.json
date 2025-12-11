@@ -4,49 +4,121 @@
   "nodes": {
     "s0": {
       "id": "s0",
-      "shape": "decision",
-      "text": "Is the original card ID 587102?",
-      "out": "s23A",
-      "out_yes": "s23C",
-      "out_no": "s24B"
-    },
-    "s23A": {
-      "id": "s23A",
-      "shape": "decision",
-      "text": "Is the original card ID 587103?",
-      "out": "s25A",
-      "out_yes": "s25B",
-      "out_no": "s24B"
-    },
-    "s23C": {
-      "id": "s23C",
       "shape": "process",
-      "text": "Remove probe from card under test",
-      "out": "s5-18",
+      "text": "Identify and classify\nFailure Conditions;\nRef. Section 4.2\nTable 1",
+      "out": "s1",
+      "out_yes": "s2",
+      "out_no": null
+    },
+    "s1": {
+      "id": "s1",
+      "shape": "decision",
+      "text": "Is FC severity\nNegligible, MIN?",
+      "out": "s3",
+      "out_yes": "s4",
+      "out_no": null
+    },
+    "s2": {
+      "id": "s2",
+      "shape": "terminator",
+      "text": "(B)",
+      "out": "s0",
       "out_yes": null,
       "out_no": null
     },
-    "s24B": {
-      "id": "s24B",
+    "s3": {
+      "id": "s3",
       "shape": "decision",
-      "text": "Is the original card ID 587104?",
-      "out": "s25A",
-      "out_yes": "s25B",
+      "text": "Is FC Severity\nMAI?",
+      "out": "s4",
+      "out_yes": "s5",
       "out_no": null
     },
-    "s25A": {
-      "id": "s25A",
+    "s4": {
+      "id": "s4",
       "shape": "process",
-      "text": "Replace cards A2131, A2134, A2319",
-      "out": "s5-22",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s5",
       "out_yes": null,
       "out_no": null
     },
-    "s25B": {
-      "id": "s25B",
+    "s5": {
+      "id": "s5",
       "shape": "process",
-      "text": "Replace cards A2135, A2138, A2414, A2413",
-      "out": "s5-22",
+      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.2",
+      "out": "s6",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s6": {
+      "id": "s6",
+      "shape": "decision",
+      "text": "Is FC\nSeverity\nHAZ?",
+      "out": "s7",
+      "out_yes": "s8",
+      "out_no": null
+    },
+    "s7": {
+      "id": "s7",
+      "shape": "process",
+      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.3 & 4.6",
+      "out": "s9",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s8": {
+      "id": "s8",
+      "shape": "decision",
+      "text": "Is FC\nSeverity\nCAT?",
+      "out": "s10",
+      "out_yes": "s11",
+      "out_no": null
+    },
+    "s9": {
+      "id": "s9",
+      "shape": "process",
+      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.4 & 4.6",
+      "out": "s12",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s10": {
+      "id": "s10",
+      "shape": "process",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s12",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s11": {
+      "id": "s11",
+      "shape": "process",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s12",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s12": {
+      "id": "s12",
+      "shape": "decision",
+      "text": "Are all\nFailure conditions\naddressed?",
+      "out": "s13",
+      "out_yes": "s14",
+      "out_no": null
+    },
+    "s13": {
+      "id": "s13",
+      "shape": "process",
+      "text": "Document the\nactivities and results;\nRef section 4.8",
+      "out": null,
+      "out_yes": null,
+      "out_no": null
+    },
+    "s14": {
+      "id": "s14",
+      "shape": "terminator",
+      "text": "(A)",
+      "out": null,
       "out_yes": null,
       "out_no": null
     }

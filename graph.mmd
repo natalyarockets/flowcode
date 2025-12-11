@@ -1,18 +1,63 @@
 flowchart TD
-    s0{Is the original card ID 587102?}
-    s23A{Is the original card ID 587103?}
-    s23C[Remove probe from card under test]
-    s24B{Is the original card ID 587104?}
-    s25A[Replace cards A2131, A2134, A2319]
-    s25B[Replace cards A2135, A2138, A2414, A2413]
-    s0 --> s23A
-    s0 --|YES|--> s23C
-    s0 --|NO|--> s24B
-    s23A --> s25A
-    s23A --|YES|--> s25B
-    s23A --|NO|--> s24B
-    s23C --> s5-18
-    s24B --> s25A
-    s24B --|YES|--> s25B
-    s25A --> s5-22
-    s25B --> s5-22
+    s0[Identify and classify
+Failure Conditions;
+Ref. Section 4.2
+Table 1]
+    s1{Is FC severity
+Negligible, MIN?}
+    s2([(B)])
+    s3{Is FC Severity
+MAI?}
+    s4[Perform Design &
+Installation Appraisal;
+Ref Section 4.4]
+    s5[Perform a
+qualitative analysis
+in accordance with
+Section 4.5.2]
+    s6{Is FC
+Severity
+HAZ?}
+    s7[Perform a
+qualitative analysis
+in accordance with
+Section 4.5.3 & 4.6]
+    s8{Is FC
+Severity
+CAT?}
+    s9[Perform a
+qualitative analysis
+in accordance with
+Section 4.5.4 & 4.6]
+    s10[Perform Design &
+Installation Appraisal;
+Ref Section 4.4]
+    s11[Perform Design &
+Installation Appraisal;
+Ref Section 4.4]
+    s12{Are all
+Failure conditions
+addressed?}
+    s13[Document the
+activities and results;
+Ref section 4.8]
+    s14([(A)])
+    s0 --> s1
+    s0 --|YES|--> s2
+    s1 --> s3
+    s1 --|YES|--> s4
+    s2 --> s0
+    s3 --> s4
+    s3 --|YES|--> s5
+    s4 --> s5
+    s5 --> s6
+    s6 --> s7
+    s6 --|YES|--> s8
+    s7 --> s9
+    s8 --> s10
+    s8 --|YES|--> s11
+    s9 --> s12
+    s10 --> s12
+    s11 --> s12
+    s12 --> s13
+    s12 --|YES|--> s14

@@ -1,12 +1,308 @@
 {
   "orientation": "top-down",
-  "start_node": "s0",
+  "start_node": "s2",
   "nodes": {
     "s0": {
       "id": "s0",
-      "shape": "decision",
-      "text": "g FROM CARD BETWEEN\n387102, Ghoer Test] srlors\né\n-\nSaicinn ves “awe [7\né\nSaw ves Cgpanat\n‘\n\"CARD 1D 10 cHaNce TO ES C)\nG\n© aD om. asses\n10 CHANGE TO 42135, 2138, C)\n@ O\n5\nwo ~ J wisn *\nSTATE 10 eee\nSR G",
+      "shape": "terminator",
+      "text": "=\nPerform Design & Yes\nInstallation Appraisal;\nRef Section 4.4\nNo",
+      "out": "s1",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s1": {
+      "id": "s1",
+      "shape": "terminator",
+      "text": "",
       "out": null,
+      "out_yes": null,
+      "out_no": null
+    },
+    "s2": {
+      "id": "s2",
+      "shape": "terminator",
+      "text": "(A)",
+      "out": "s0",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s3": {
+      "id": "s3",
+      "shape": "process_or_decision",
+      "text": "Cou",
+      "out": "s0",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s4": {
+      "id": "s4",
+      "shape": "process_or_decision",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s0",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s5": {
+      "id": "s5",
+      "shape": "terminator",
+      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.3 & 4.6",
+      "out": "s27",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s6": {
+      "id": "s6",
+      "shape": "process_or_decision",
+      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.3 & 4.6",
+      "out": "s27",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s7": {
+      "id": "s7",
+      "shape": "terminator",
+      "text": "Perform Design & y\nInstallation Appraisal; (A)\nRef Section 4.4\nNo\nnC)",
+      "out": "s8",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s8": {
+      "id": "s8",
+      "shape": "terminator",
+      "text": "",
+      "out": "s3",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s9": {
+      "id": "s9",
+      "shape": "terminator",
+      "text": "(A)",
+      "out": "s7",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s10": {
+      "id": "s10",
+      "shape": "process_or_decision",
+      "text": "",
+      "out": "s7",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s11": {
+      "id": "s11",
+      "shape": "process_or_decision",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s7",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s12": {
+      "id": "s12",
+      "shape": "terminator",
+      "text": "Perform Design & Yes\nInstallation Appraisal; >A)\nRef Section 4.4\nNo",
+      "out": "s13",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s13": {
+      "id": "s13",
+      "shape": "terminator",
+      "text": "",
+      "out": "s10",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s14": {
+      "id": "s14",
+      "shape": "terminator",
+      "text": "(A)",
+      "out": "s12",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s15": {
+      "id": "s15",
+      "shape": "process_or_decision",
+      "text": "Crs >",
+      "out": "s12",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s16": {
+      "id": "s16",
+      "shape": "process_or_decision",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s12",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s17": {
+      "id": "s17",
+      "shape": "terminator",
+      "text": "(a)",
+      "out": "s15",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s18": {
+      "id": "s18",
+      "shape": "terminator",
+      "text": "(a)",
+      "out": "s15",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s19": {
+      "id": "s19",
+      "shape": "terminator",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s30",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s20": {
+      "id": "s20",
+      "shape": "terminator",
+      "text": "(a)",
+      "out": "s19",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s21": {
+      "id": "s21",
+      "shape": "process_or_decision",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s30",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s22": {
+      "id": "s22",
+      "shape": "terminator",
+      "text": "Identify and classify\nFailure Conditions; Redesi\nRef. Section 4.2 edesign\nTable 1\nPerform Design &\nIs FC severity Yes y | installation Appraisal;\nNegligible, MINZ Ref Section 4.4\nNo\nISFC Is Perform Design &\nYes Yes i\nSeverity es Aircraft Installation Appraisal;\nMAI? Level 1? Ref Section 4.4\nNo\nPerform a Perform Design &\nqualitative analysis Installation Appraisal;\nin accordance with Ref Section 4.4\nSection 4.5.2\nIsFC Yes Perform a Perform Design &\nseverity qualitative analysis Installation Appraisal;\nhaz? in accordance with Ref Section 4.4\nSection 4.5.3 & 4.6\nNo\nPerforma\nIs FC Yes | qualitative analysis Perform Design &\nseverity in accordance with |——>] Installation Appraisal;\ncaT? Section 4.5.4 & 4.6 Ref Section 4.4\nNo\n‘are all\nFailure conditions (a)\naddressed?\nYes\nNo Document the\nactivities and results;\nRef section 4.8,",
+      "out": "s11",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s23": {
+      "id": "s23",
+      "shape": "process_or_decision",
+      "text": "Document the\nactivities and results;\nRef section 4.8",
+      "out": null,
+      "out_yes": null,
+      "out_no": null
+    },
+    "s24": {
+      "id": "s24",
+      "shape": "terminator",
+      "text": "(A)",
+      "out": null,
+      "out_yes": null,
+      "out_no": null
+    },
+    "s25": {
+      "id": "s25",
+      "shape": "process_or_decision",
+      "text": "‘Are all\nFailure conditions\naddressed?",
+      "out": "s23",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s26": {
+      "id": "s26",
+      "shape": "process_or_decision",
+      "text": "Is FC\nseverity\nCAT?",
+      "out": "s25",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s27": {
+      "id": "s27",
+      "shape": "process_or_decision",
+      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.4 & 4.6",
+      "out": "s24",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s28": {
+      "id": "s28",
+      "shape": "process_or_decision",
+      "text": "Is FC\nSeverity\nHAZ?",
+      "out": "s26",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s29": {
+      "id": "s29",
+      "shape": "process_or_decision",
+      "text": "Perform a\nqualitative analysis,\nin accordance with\n\nSection 4.5.2",
+      "out": "s22",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s30": {
+      "id": "s30",
+      "shape": "process_or_decision",
+      "text": "Is\nAircraft\nLevel 1?",
+      "out": "s29",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s31": {
+      "id": "s31",
+      "shape": "process_or_decision",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s16",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s32": {
+      "id": "s32",
+      "shape": "process_or_decision",
+      "text": "a aw\nseverity",
+      "out": "s22",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s33": {
+      "id": "s33",
+      "shape": "process_or_decision",
+      "text": "Restate ss",
+      "out": "s32",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s34": {
+      "id": "s34",
+      "shape": "terminator",
+      "text": "",
+      "out": "s20",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s35": {
+      "id": "s35",
+      "shape": "terminator",
+      "text": "",
+      "out": "s22",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s36": {
+      "id": "s36",
+      "shape": "process_or_decision",
+      "text": "",
+      "out": "s19",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s37": {
+      "id": "s37",
+      "shape": "process_or_decision",
+      "text": "Identify and classify\nFailure Conditions;\nRef. Section 4,2\nTable 1",
+      "out": "s33",
       "out_yes": null,
       "out_no": null
     }
