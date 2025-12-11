@@ -12,6 +12,39 @@ class OllamaSemanticModel(SemanticModel):
         self.timeout = timeout
         self.verbose = verbose
 
+    def calibrate(self, image_path):
+        with open(image_path, "rb") as f:
+            img_bytes = f.read()
+        img_b64 = base64.b64encode(img_bytes).decode("utf-8")
+
+        prompt = (
+            "Output ONLY this JSON:\n"
+            "{\n"
+            '  "orientation": "top-down" | "left-right" | "radial" | "swimlane",\n'
+            '  "median_shape_width": <int>,\n'
+            '  "median_shape_height": <int>,\n'
+            '  "shape_types_present": ["decision"|"process"|"terminator"|"connector", ...],\n'
+            '  "arrow_thickness_px": <int>,\n'
+            '  "estimated_node_count": <int>,\n'
+            '  "arrow_style": "triangle-head" | "line-only" | "block" | "none"\n'
+            "}\n"
+            "Estimate typical node width/height in pixels and approximate node count."
+        )
+        payload = {
+            "model": self.model,
+            "messages": [
+                {"role": "user", "content": prompt, "images": [img_b64]},
+            ],
+            "stream": False,
+        }
+        url = f"{self.api_url}/api/chat"
+        r = requests.post(url, json=payload, timeout=self.timeout)
+        r.raise_for_status()
+        data = r.json()
+        raw = data["message"]["content"]
+        cleaned = safe_json_extract(raw)
+        return cleaned if cleaned else strip_code_fences(raw)
+
     # Removed legacy describe(); we only perform final review now.
 
     def review_graph(self, image_path, graph_json):

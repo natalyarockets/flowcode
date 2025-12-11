@@ -1,0 +1,18 @@
+flowchart TD
+    s0{Is the original card ID 587102?}
+    s23A{Is the original card ID 587103?}
+    s23C[Remove probe from card under test]
+    s24B{Is the original card ID 587104?}
+    s25A[Replace cards A2131, A2134, A2319]
+    s25B[Replace cards A2135, A2138, A2414, A2413]
+    s0 --> s23A
+    s0 --|YES|--> s23C
+    s0 --|NO|--> s24B
+    s23A --> s25A
+    s23A --|YES|--> s25B
+    s23A --|NO|--> s24B
+    s23C --> s5-18
+    s24B --> s25A
+    s24B --|YES|--> s25B
+    s25A --> s5-22
+    s25B --> s5-22

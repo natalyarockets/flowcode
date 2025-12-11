@@ -1,0 +1,54 @@
+{
+  "orientation": "top-down",
+  "start_node": "s0",
+  "nodes": {
+    "s0": {
+      "id": "s0",
+      "shape": "decision",
+      "text": "Is the original card ID 587102?",
+      "out": "s23A",
+      "out_yes": "s23C",
+      "out_no": "s24B"
+    },
+    "s23A": {
+      "id": "s23A",
+      "shape": "decision",
+      "text": "Is the original card ID 587103?",
+      "out": "s25A",
+      "out_yes": "s25B",
+      "out_no": "s24B"
+    },
+    "s23C": {
+      "id": "s23C",
+      "shape": "process",
+      "text": "Remove probe from card under test",
+      "out": "s5-18",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s24B": {
+      "id": "s24B",
+      "shape": "decision",
+      "text": "Is the original card ID 587104?",
+      "out": "s25A",
+      "out_yes": "s25B",
+      "out_no": null
+    },
+    "s25A": {
+      "id": "s25A",
+      "shape": "process",
+      "text": "Replace cards A2131, A2134, A2319",
+      "out": "s5-22",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s25B": {
+      "id": "s25B",
+      "shape": "process",
+      "text": "Replace cards A2135, A2138, A2414, A2413",
+      "out": "s5-22",
+      "out_yes": null,
+      "out_no": null
+    }
+  }
+}

@@ -28,10 +28,21 @@ class FlowchartExtractor:
     # New flowgraph-oriented helpers
     def extract_flowgraph(self, image_path):
         clean_image = image_path
-        geometry = detect_geometry(clean_image)
+        # Calibrate if semantic model available
+        params = None
+        try:
+            params_text = self.semantic_model.calibrate(clean_image)
+            import json as _json
+            params = _json.loads(params_text)
+        except Exception:
+            params = None
+        geometry = detect_geometry(clean_image, params=params)
         geometry = annotate_ocr(clean_image, geometry)
         yesno = detect_yes_no_near_decisions(clean_image, geometry)
-        return build_fg(geometry, yes_no_hints=yesno)
+        forced_orientation = None
+        if params and isinstance(params.get("orientation"), str):
+            forced_orientation = params["orientation"]
+        return build_fg(geometry, yes_no_hints=yesno, forced_orientation=forced_orientation)
 
     def flowgraph_to_json(self, fg):
         return fg_to_json(fg)

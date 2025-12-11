@@ -28,26 +28,41 @@ def main():
         print("Error: Missing OpenAI API key. Use --api-key or set OPENAI_API_KEY.", file=sys.stderr)
         sys.exit(2)
 
-    # 1) Geometry detection and overlay
-    extractor = FlowchartExtractor(FlowforgeConfig(semantic_provider="openai", semantic_model=args.model, api_key=args.api_key, api_base=args.api_base))
-    fg = extractor.extract_flowgraph(args.image)
-    # Draw overlays from current geometry pass inside extractor? We still draw using original image + boxes:
-    # Rebuild overlay via pipeline steps
-    # For simplicity, do a light re-run to draw: extract geometry locally
+    # 1) Geometry detection and overlay will run AFTER LLM steps
     from flowforge.geometry.raster_detector import detect_geometry
-    from flowforge.ocr.tesseract_ocr import annotate_ocr
-    g = detect_geometry(args.image)
+    from flowforge.ocr.tesseract_ocr import annotate_ocr, detect_yes_no_near_decisions
+    from flowforge.graph.flowgraph import build_flowgraph
+
+    # 1) Calibrate (LLM) first; no geometry until this returns
+    # Initialize extractor/LLM backend early
+    extractor = FlowchartExtractor(FlowforgeConfig(semantic_provider="openai", semantic_model=args.model, api_key=args.api_key, api_base=args.api_base))
+
+    params = None
+    try:
+        params_text = extractor.semantic_model.calibrate(args.image)  # LLM call first
+        import json as _json
+        params = _json.loads(params_text)
+        print(f"Calibration params: {params}")
+    except Exception as e:
+        print(f"Calibration failed: {e}", file=sys.stderr)
+        params = None
+
+    # 2) Geometry using calibrated params (no outputs yet)
+    g = detect_geometry(args.image, params=params)
     g = annotate_ocr(args.image, g)
+    yesno = detect_yes_no_near_decisions(args.image, g)
+    forced_orientation = params.get("orientation") if isinstance(params, dict) else None
+    fg = build_flowgraph(g, yes_no_hints=yesno, forced_orientation=forced_orientation)  # type: ignore
+
+    # 3) LLM review to refine the graph (only now write artifacts)
+    revised_json = extractor.semantic_model.review_graph(args.image, extractor.flowgraph_to_json(fg))
+    # Overlay saved after review (even though geometry doesn't change)
     out_path = draw_geometry(args.image, g, args.overlay)
     print(f"Saved overlay: {out_path}")
-
-    # 2) Deterministic graph JSON
+    # Save deterministic graph
     with open(args.out_json, "w", encoding="utf-8") as f:
         f.write(extractor.flowgraph_to_json(fg))
     print(f"Wrote deterministic graph JSON: {args.out_json}")
-
-    # 3) LLM review to refine the graph
-    revised_json = extractor.semantic_model.review_graph(args.image, extractor.flowgraph_to_json(fg))
     with open(args.out_json_mod, "w", encoding="utf-8") as f:
         f.write(revised_json)
     print(f"Wrote LLM-reviewed graph JSON: {args.out_json_mod}")

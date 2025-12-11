@@ -62,7 +62,11 @@ def _overlap_1d(a1: float, a2: float, b1: float, b2: float) -> float:
     return max(0.0, min(a2, b2) - max(a1, b1))
 
 
-def build_flowgraph(geometry: GeometryOutput, yes_no_hints: Optional[Dict[str, Dict[str, Optional[str]]]] = None) -> FlowGraph:
+def build_flowgraph(
+    geometry: GeometryOutput,
+    yes_no_hints: Optional[Dict[str, Dict[str, Optional[str]]]] = None,
+    forced_orientation: Optional[str] = None,
+) -> FlowGraph:
     """
     Deterministic adjacency construction:
     - orientation via infer_orientation
@@ -71,7 +75,7 @@ def build_flowgraph(geometry: GeometryOutput, yes_no_hints: Optional[Dict[str, D
     - yes_no_hints: optional {'sX': {'left':'YES','right':'NO'}} overlays
     """
     shapes = geometry.shapes
-    orientation = infer_orientation(geometry)
+    orientation = forced_orientation if forced_orientation else infer_orientation(geometry)
     id_to_shape: Dict[str, ShapePrimitive] = {s.id: s for s in shapes}
     nodes: Dict[str, FlowNode] = {
         s.id: FlowNode(id=s.id, shape=s.shape_type or "unknown", text=s.text or "") for s in shapes

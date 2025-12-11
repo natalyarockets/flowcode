@@ -21,6 +21,47 @@ class OpenAISemanticModel(SemanticModel):
         with open(image_path, "rb") as f:
             return base64.b64encode(f.read()).decode("utf-8")
 
+    def calibrate(self, image_path):
+        image_b64 = self._encode_image(image_path)
+        prompt = """
+You are a vision model. Output ONLY this JSON with integers where appropriate:
+{
+  "orientation": "top-down" | "left-right" | "radial" | "swimlane",
+  "median_shape_width": <int>,
+  "median_shape_height": <int>,
+  "shape_types_present": ["decision"|"process"|"terminator"|"connector", ...],
+  "arrow_thickness_px": <int>,
+  "estimated_node_count": <int>,
+  "arrow_style": "triangle-head" | "line-only" | "block" | "none"
+}
+Guidance:
+- Estimate typical node width/height in pixels (not text boxes).
+- Give a reasonable approximate node count (rounded integer).
+"""
+        payload = {
+            "model": self.model,
+            "response_format": {"type": "json_object"},
+            "temperature": 0.0,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_b64}" }},
+                    ],
+                }
+            ],
+        }
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
+        r = requests.post(f"{self.api_base}/chat/completions", json=payload, headers=headers, timeout=60)
+        r.raise_for_status()
+        content = r.json()["choices"][0]["message"]["content"]
+        cleaned = safe_json_extract(content)
+        return cleaned if cleaned is not None else strip_code_fences(content)
+
     def review_graph(self, image_path, graph_json):
         image_b64 = self._encode_image(image_path)
         prompt = f"""

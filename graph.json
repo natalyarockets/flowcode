@@ -1,0 +1,14 @@
+{
+  "orientation": "top-down",
+  "start_node": "s0",
+  "nodes": {
+    "s0": {
+      "id": "s0",
+      "shape": "decision",
+      "text": "g FROM CARD BETWEEN\n387102, Ghoer Test] srlors\né\n-\nSaicinn ves “awe [7\né\nSaw ves Cgpanat\n‘\n\"CARD 1D 10 cHaNce TO ES C)\nG\n© aD om. asses\n10 CHANGE TO 42135, 2138, C)\n@ O\n5\nwo ~ J wisn *\nSTATE 10 eee\nSR G",
+      "out": null,
+      "out_yes": null,
+      "out_no": null
+    }
+  }
+}
