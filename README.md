@@ -46,6 +46,21 @@ It produces:
 - `graph_modified.json`: LLM-reviewed version of the graph.
 - `graph.mmd`: Mermaid notation for easy visualization.
 
+Library usage
+-------------
+
+To run the pipeline from another Python project (e.g., a document-processing workflow) import
+and call the helper defined in `examples/example1_basic.py`:
+
+```python
+from examples.example1_basic import run_flowchart_pipeline, FlowchartRunResult
+
+result = run_flowchart_pipeline("/path/to/image.png", overlay_path=None)
+print(result.reviewed_json)
+```
+
+Pass your own `FlowchartExtractor` or configuration if you need a different semantic model or API key.
+
 Key components
 --------------
 

@@ -2,7 +2,9 @@ import json
 import base64
 import requests
 from .base import SemanticModel
+from .http_utils import post_with_retries
 from .prompts import calibrate_prompt, review_prompt
+from .schemas import validate_review_json
 from ..utils.json_sanitize import safe_json_extract, strip_code_fences
 
 
@@ -56,11 +58,11 @@ class OllamaSemanticModel(SemanticModel):
         }
 
         url = f"{self.api_url}/api/chat"
-        r = requests.post(url, json=payload, timeout=self.timeout)
-        if r.status_code != 200:
-            print("SERVER RESPONSE:", r.text)
-        r.raise_for_status()
-        data = r.json()
+        response = post_with_retries(url, payload, timeout=self.timeout)
+        data = response.json()
         raw = data["message"]["content"]
         cleaned = safe_json_extract(raw)
-        return cleaned if cleaned else strip_code_fences(raw)
+        normalized = cleaned if cleaned is not None else strip_code_fences(raw)
+        if not isinstance(normalized, str):
+            normalized = json.dumps(normalized, ensure_ascii=False)
+        return validate_review_json(normalized)

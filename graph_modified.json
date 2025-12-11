@@ -1,27 +1,27 @@
 {
   "orientation": "top-down",
-  "start_node": "s0",
+  "start_node": "s2",
   "nodes": {
     "s0": {
       "id": "s0",
-      "shape": "process",
+      "shape": "terminator",
       "text": "Identify and classify\nFailure Conditions;\nRef. Section 4.2\nTable 1",
       "out": "s1",
-      "out_yes": "s2",
+      "out_yes": null,
       "out_no": null
     },
     "s1": {
       "id": "s1",
       "shape": "decision",
       "text": "Is FC severity\nNegligible, MIN?",
-      "out": "s3",
+      "out": "s2",
       "out_yes": "s4",
-      "out_no": null
+      "out_no": "s3"
     },
     "s2": {
       "id": "s2",
       "shape": "terminator",
-      "text": "(B)",
+      "text": "Redesign",
       "out": "s0",
       "out_yes": null,
       "out_no": null
@@ -29,64 +29,64 @@
     "s3": {
       "id": "s3",
       "shape": "decision",
-      "text": "Is FC Severity\nMAI?",
-      "out": "s4",
+      "text": "Is FC Severity\nMAJ?",
+      "out": "s0",
       "out_yes": "s5",
-      "out_no": null
+      "out_no": "s6"
     },
     "s4": {
       "id": "s4",
       "shape": "process",
       "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
-      "out": "s5",
+      "out": "s0",
       "out_yes": null,
       "out_no": null
     },
     "s5": {
       "id": "s5",
-      "shape": "process",
-      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.2",
-      "out": "s6",
-      "out_yes": null,
-      "out_no": null
+      "shape": "decision",
+      "text": "Is FC Severity\nHAZ?",
+      "out": "s7",
+      "out_yes": "s8",
+      "out_no": "s9"
     },
     "s6": {
       "id": "s6",
-      "shape": "decision",
-      "text": "Is FC\nSeverity\nHAZ?",
-      "out": "s7",
-      "out_yes": "s8",
+      "shape": "process",
+      "text": "Perform a qualitative\nanalysis in accordance\nwith Section 4.5.2",
+      "out": "s0",
+      "out_yes": null,
       "out_no": null
     },
     "s7": {
       "id": "s7",
       "shape": "process",
-      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.3 & 4.6",
-      "out": "s9",
+      "text": "Perform a qualitative\nanalysis in accordance\nwith Section 4.5.3 & 4.6",
+      "out": "s0",
       "out_yes": null,
       "out_no": null
     },
     "s8": {
       "id": "s8",
-      "shape": "decision",
-      "text": "Is FC\nSeverity\nCAT?",
-      "out": "s10",
-      "out_yes": "s11",
+      "shape": "process",
+      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "out": "s0",
+      "out_yes": null,
       "out_no": null
     },
     "s9": {
       "id": "s9",
-      "shape": "process",
-      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.4 & 4.6",
-      "out": "s12",
-      "out_yes": null,
-      "out_no": null
+      "shape": "decision",
+      "text": "Is FC Severity\nCAT?",
+      "out": "s10",
+      "out_yes": "s11",
+      "out_no": "s12"
     },
     "s10": {
       "id": "s10",
       "shape": "process",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
-      "out": "s12",
+      "text": "Perform a qualitative\nanalysis in accordance\nwith Section 4.5.4 & 4.6",
+      "out": "s0",
       "out_yes": null,
       "out_no": null
     },
@@ -94,7 +94,7 @@
       "id": "s11",
       "shape": "process",
       "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
-      "out": "s12",
+      "out": "s0",
       "out_yes": null,
       "out_no": null
     },
@@ -108,7 +108,7 @@
     },
     "s13": {
       "id": "s13",
-      "shape": "process",
+      "shape": "terminator",
       "text": "Document the\nactivities and results;\nRef section 4.8",
       "out": null,
       "out_yes": null,
@@ -117,7 +117,7 @@
     "s14": {
       "id": "s14",
       "shape": "terminator",
-      "text": "(A)",
+      "text": "Pass",
       "out": null,
       "out_yes": null,
       "out_no": null

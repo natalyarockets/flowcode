@@ -5,7 +5,7 @@
     "s0": {
       "id": "s0",
       "shape": "terminator",
-      "text": "=\nPerform Design & Yes\nInstallation Appraisal;\nRef Section 4.4\nNo",
+      "text": "<>\n()",
       "out": "s1",
       "out_yes": null,
       "out_no": null
@@ -13,7 +13,7 @@
     "s1": {
       "id": "s1",
       "shape": "terminator",
-      "text": "",
+      "text": "@",
       "out": null,
       "out_yes": null,
       "out_no": null
@@ -29,7 +29,7 @@
     "s3": {
       "id": "s3",
       "shape": "process_or_decision",
-      "text": "Cou",
+      "text": "",
       "out": "s0",
       "out_yes": null,
       "out_no": null
@@ -37,7 +37,7 @@
     "s4": {
       "id": "s4",
       "shape": "process_or_decision",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "text": "Reefer Drugs &\neatullation Appeanal,",
       "out": "s0",
       "out_yes": null,
       "out_no": null
@@ -45,7 +45,7 @@
     "s5": {
       "id": "s5",
       "shape": "terminator",
-      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.3 & 4.6",
+      "text": "quatatrer wualyus",
       "out": "s27",
       "out_yes": null,
       "out_no": null
@@ -53,7 +53,7 @@
     "s6": {
       "id": "s6",
       "shape": "process_or_decision",
-      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.3 & 4.6",
+      "text": "Pertfowen\nqualtatrer analyes\nnaccorducce yath\neto a tk at",
       "out": "s27",
       "out_yes": null,
       "out_no": null
@@ -61,7 +61,7 @@
     "s7": {
       "id": "s7",
       "shape": "terminator",
-      "text": "Perform Design & y\nInstallation Appraisal; (A)\nRef Section 4.4\nNo\nnC)",
+      "text": "OG)",
       "out": "s8",
       "out_yes": null,
       "out_no": null
@@ -69,7 +69,7 @@
     "s8": {
       "id": "s8",
       "shape": "terminator",
-      "text": "",
+      "text": "(8)",
       "out": "s3",
       "out_yes": null,
       "out_no": null
@@ -77,7 +77,7 @@
     "s9": {
       "id": "s9",
       "shape": "terminator",
-      "text": "(A)",
+      "text": "(a)",
       "out": "s7",
       "out_yes": null,
       "out_no": null
@@ -85,7 +85,7 @@
     "s10": {
       "id": "s10",
       "shape": "process_or_decision",
-      "text": "",
+      "text": "CD",
       "out": "s7",
       "out_yes": null,
       "out_no": null
@@ -93,7 +93,7 @@
     "s11": {
       "id": "s11",
       "shape": "process_or_decision",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "text": "extallgbon Appears",
       "out": "s7",
       "out_yes": null,
       "out_no": null
@@ -101,7 +101,7 @@
     "s12": {
       "id": "s12",
       "shape": "terminator",
-      "text": "Perform Design & Yes\nInstallation Appraisal; >A)\nRef Section 4.4\nNo",
+      "text": ". Ne",
       "out": "s13",
       "out_yes": null,
       "out_no": null
@@ -109,7 +109,7 @@
     "s13": {
       "id": "s13",
       "shape": "terminator",
-      "text": "",
+      "text": "(8)",
       "out": "s10",
       "out_yes": null,
       "out_no": null
@@ -125,7 +125,7 @@
     "s15": {
       "id": "s15",
       "shape": "process_or_decision",
-      "text": "Crs >",
+      "text": "",
       "out": "s12",
       "out_yes": null,
       "out_no": null
@@ -133,7 +133,7 @@
     "s16": {
       "id": "s16",
       "shape": "process_or_decision",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "text": "Perform Deuge &\nlretallstion Appt ana\nRet section 44",
       "out": "s12",
       "out_yes": null,
       "out_no": null
@@ -157,7 +157,7 @@
     "s19": {
       "id": "s19",
       "shape": "terminator",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "text": "Perform Deuge &\nlretallstion Appt ana\nRet section 44",
       "out": "s30",
       "out_yes": null,
       "out_no": null
@@ -173,7 +173,7 @@
     "s21": {
       "id": "s21",
       "shape": "process_or_decision",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "text": "Perform Deuge &\nlretallstion Appt ana\nRet section 44",
       "out": "s30",
       "out_yes": null,
       "out_no": null
@@ -181,7 +181,7 @@
     "s22": {
       "id": "s22",
       "shape": "terminator",
-      "text": "Identify and classify\nFailure Conditions; Redesi\nRef. Section 4.2 edesign\nTable 1\nPerform Design &\nIs FC severity Yes y | installation Appraisal;\nNegligible, MINZ Ref Section 4.4\nNo\nISFC Is Perform Design &\nYes Yes i\nSeverity es Aircraft Installation Appraisal;\nMAI? Level 1? Ref Section 4.4\nNo\nPerform a Perform Design &\nqualitative analysis Installation Appraisal;\nin accordance with Ref Section 4.4\nSection 4.5.2\nIsFC Yes Perform a Perform Design &\nseverity qualitative analysis Installation Appraisal;\nhaz? in accordance with Ref Section 4.4\nSection 4.5.3 & 4.6\nNo\nPerforma\nIs FC Yes | qualitative analysis Perform Design &\nseverity in accordance with |——>] Installation Appraisal;\ncaT? Section 4.5.4 & 4.6 Ref Section 4.4\nNo\n‘are all\nFailure conditions (a)\naddressed?\nYes\nNo Document the\nactivities and results;\nRef section 4.8,",
+      "text": "kientity and Lavy\nbahar Condi\nwe de Redesign (e)\nTablet\ny\nPeefowen Dewge &\nep | tation Appear\nRet sechon 4\nNo\ny\nve ae] Beeforn Bevan &\nInstallation Apprara >\nRet Snetion 44\nBettoeen a Perform Dreugn &\nualttative analy intallition Apprana | pe\nFe) uatatere anyus fatstiation Appears | pe\nNo\nYes | quahtative aeuslysn Restorer Deng &\nfn aceetdanee with P| iestatlation Appeanal, |\nNo\n.\ndetrvtins and ewuits,\nBeet wretion A",
       "out": "s11",
       "out_yes": null,
       "out_no": null
@@ -189,7 +189,7 @@
     "s23": {
       "id": "s23",
       "shape": "process_or_decision",
-      "text": "Document the\nactivities and results;\nRef section 4.8",
+      "text": "Descumennt the\nsetevitwes and emits,\nRet wetion 4 &",
       "out": null,
       "out_yes": null,
       "out_no": null
@@ -197,7 +197,7 @@
     "s24": {
       "id": "s24",
       "shape": "terminator",
-      "text": "(A)",
+      "text": "@",
       "out": null,
       "out_yes": null,
       "out_no": null
@@ -205,7 +205,7 @@
     "s25": {
       "id": "s25",
       "shape": "process_or_decision",
-      "text": "‘Are all\nFailure conditions\naddressed?",
+      "text": "",
       "out": "s23",
       "out_yes": null,
       "out_no": null
@@ -213,7 +213,7 @@
     "s26": {
       "id": "s26",
       "shape": "process_or_decision",
-      "text": "Is FC\nseverity\nCAT?",
+      "text": "",
       "out": "s25",
       "out_yes": null,
       "out_no": null
@@ -221,7 +221,7 @@
     "s27": {
       "id": "s27",
       "shape": "process_or_decision",
-      "text": "Perform a\nqualitative analysis\nin accordance with\nSection 4.5.4 & 4.6",
+      "text": "Peefoem a\nqualtatrer analyes\nnaccorducce yath\nMeter 44 Rat",
       "out": "s24",
       "out_yes": null,
       "out_no": null
@@ -229,7 +229,7 @@
     "s28": {
       "id": "s28",
       "shape": "process_or_decision",
-      "text": "Is FC\nSeverity\nHAZ?",
+      "text": "",
       "out": "s26",
       "out_yes": null,
       "out_no": null
@@ -237,7 +237,7 @@
     "s29": {
       "id": "s29",
       "shape": "process_or_decision",
-      "text": "Perform a\nqualitative analysis,\nin accordance with\n\nSection 4.5.2",
+      "text": "Beetoem 4\nualitabive analy\n6 axccordance with\n\nSeetion 442",
       "out": "s22",
       "out_yes": null,
       "out_no": null
@@ -245,7 +245,7 @@
     "s30": {
       "id": "s30",
       "shape": "process_or_decision",
-      "text": "Is\nAircraft\nLevel 1?",
+      "text": "",
       "out": "s29",
       "out_yes": null,
       "out_no": null
@@ -253,7 +253,7 @@
     "s31": {
       "id": "s31",
       "shape": "process_or_decision",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
+      "text": "Pesform Dewge &\nIntallaen Appar\nRef Section 44",
       "out": "s16",
       "out_yes": null,
       "out_no": null
@@ -261,7 +261,7 @@
     "s32": {
       "id": "s32",
       "shape": "process_or_decision",
-      "text": "a aw\nseverity",
+      "text": "",
       "out": "s22",
       "out_yes": null,
       "out_no": null
@@ -269,7 +269,7 @@
     "s33": {
       "id": "s33",
       "shape": "process_or_decision",
-      "text": "Restate ss",
+      "text": "",
       "out": "s32",
       "out_yes": null,
       "out_no": null
@@ -293,7 +293,7 @@
     "s36": {
       "id": "s36",
       "shape": "process_or_decision",
-      "text": "",
+      "text": "Redesign",
       "out": "s19",
       "out_yes": null,
       "out_no": null
@@ -301,7 +301,7 @@
     "s37": {
       "id": "s37",
       "shape": "process_or_decision",
-      "text": "Identify and classify\nFailure Conditions;\nRef. Section 4,2\nTable 1",
+      "text": "Identity and cavuty\n\nBaur Condit\n\nRet Sretion 4 2\nTable 1",
       "out": "s33",
       "out_yes": null,
       "out_no": null

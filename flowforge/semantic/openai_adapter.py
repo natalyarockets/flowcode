@@ -1,9 +1,12 @@
 # flowforge/semantic/openai_adapter.py
 
 import base64
+import json
 import requests
 from .base import SemanticModel
+from .http_utils import post_with_retries
 from .prompts import calibrate_prompt, review_prompt
+from .schemas import validate_review_json
 from ..utils.json_sanitize import safe_json_extract, strip_code_fences
 
 
@@ -69,15 +72,17 @@ class OpenAISemanticModel(SemanticModel):
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
         }
-        response = requests.post(
+        response = post_with_retries(
             f"{self.api_base}/chat/completions",
-            json=payload,
+            payload,
             headers=headers,
             timeout=60,
         )
-        response.raise_for_status()
         content = response.json()["choices"][0]["message"]["content"]
         cleaned = safe_json_extract(content)
-        return cleaned if cleaned is not None else strip_code_fences(content)
+        raw = cleaned if cleaned is not None else strip_code_fences(content)
+        if not isinstance(raw, str):
+            raw = json.dumps(raw, ensure_ascii=False)
+        return validate_review_json(raw)
 
 
