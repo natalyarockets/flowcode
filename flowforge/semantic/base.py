@@ -1,14 +1,11 @@
 class SemanticModel:
     """
-    Abstract base class for semantic flowchart description models.
-    All adapters must implement `describe(image) -> str` returning JSON string.
+    Minimal interface for final LLM review only.
     """
 
-    def describe(self, image, geometry=None):
+    def review_graph(self, image_path, graph_json):
         """
-        Describe a flowchart image and return a JSON string.
-        geometry: Optional GeometryOutput providing detected primitives to guide the model.
+        Review a canonical FlowGraph JSON against the image and return a revised FlowGraph JSON.
         """
-        raise NotImplementedError("Subclasses must implement describe().")
-
+        raise NotImplementedError("Subclasses must implement review_graph().")
 

@@ -25,51 +25,59 @@ class OpenAISemanticModel(SemanticModel):
         image_b64 = self._encode_image(image_path)
 
         geometry_json = None
+        geometry_count = None
+        shape_ids_preview = None
         if geometry is not None:
             try:
-                geometry_json = json.dumps(geometry.to_dict(), indent=2)
+                gd = geometry.to_dict()
+                geometry_json = json.dumps(gd, indent=2)
+                geometry_count = len(gd.get("shapes", []))
+                shape_ids_preview = [s.get("id") for s in gd.get("shapes", [])][:30]
             except Exception:
                 geometry_json = None
+                geometry_count = None
 
-        prompt = """
+        # Prompt: if geometry provided → return cleanup JSON only. Otherwise produce full schema.
+        if geometry_json:
+            prompt = f"""
 You are a diagram-understanding model. Return ONLY one JSON object (no prose, no markdown fences).
+Task: CLEAN UP the provided geometry+OCR. DO NOT invent or remove shapes. Do NOT output pixel coordinates.
 
-Required JSON keys: layout, nodes, edges, notes.
-
-Schema:
-- layout: {
-    "orientation": "top-down" | "left-right",
-    "swimlanes": boolean,
-    "estimated_rows": integer >= 1
-  }
-- nodes: [
-    {
-      "id": "n0" | "n1" | ...,
-      "approx_position": {"row": int >=0, "col": int >=0},
-      "inferred_shape": "process" | "decision" | "terminator" | "input_output" | "connector" | "subprocess",
-      "text_summary": string,
-      "role": "start" | "end" (optional)
-    }, ...
+Required JSON keys (cleanup schema):
+- mode: "cleanup"
+- orientation: "top-down" | "left-right" | null
+- node_refinements: [
+    {{
+      "id": "<shape id>",              // MUST match exactly one GEOMETRY.shapes[].id
+      "text": "<cleaned text>",        // cleaned OCR text (empty string if unknown)
+      "inferred_shape": "<override or null>", // null to keep geometry.shape_type
+      "role": "start" | "end" | null
+    }}, ...
   ]
 - edges: [
-    {"from": "<node id>", "to": "<node id or null>", "label": string or null, "possible_labels": [string] or null},
-    ...
+    {{"from": "<shape id>", "to": "<shape id or null>", "label": "YES|NO|... or null"}}, ...
   ]
 - notes: [string, ...]
 
-Rules:
-- IDs referenced in edges must exist in nodes (unless "to" is null if uncertain).
-- Use approx_position as a coarse grid; do NOT output pixel coords.
-- Do NOT output Graphviz keys like "rankdir", "node", "edge", "source", "target".
-- Output strict JSON only.
+STRICT RULES:
+- Produce EXACTLY one node_refinement entry for EACH shape in GEOMETRY.shapes.
+- Use the shape 'id' EXACTLY (e.g., s0 → s0).
+- Do NOT add or remove shapes.
+- Edges only between known shape ids; if unsure set "to" to null or omit label.
+{("- GEOMETRY shape count: " + str(geometry_count)) if geometry_count is not None else ""}
+{("- Example first ids: " + str(shape_ids_preview)) if shape_ids_preview else ""}
+
+GEOMETRY:
+{geometry_json}
 """
-        if geometry_json:
-            prefix = (
-                "Use the provided geometric primitives as ground truth for shapes and connectors. "
-                "Correct OCR errors and assign semantic meaning but do NOT invent new shapes.\n\n"
-                f"GEOMETRY:\n{geometry_json}\n\n"
-            )
-            prompt = prefix + prompt
+        else:
+            # Fallback to legacy "full schema" behavior for semantic-only mode
+            prompt = """
+You are a diagram-understanding model. Return ONLY one JSON object (no prose, no markdown fences).
+
+Required JSON keys: layout, nodes, edges, notes.
+...
+"""
 
         payload = {
             "model": self.model,
@@ -114,5 +122,49 @@ Rules:
 
         # Fallback: strip fences and return raw if cannot validate
         return strip_code_fences(content)
+
+
+    def review_graph(self, image_path, graph_json):
+        image_b64 = self._encode_image(image_path)
+        prompt = f"""
+You are an expert at reading flowcharts. Review and revise the provided Flowchart Graph JSON to better match the image.
+Return ONLY a single JSON object with keys: layout, nodes, edges, notes (same schema).
+
+Constraints:
+- Keep node ids identical; do not invent or remove ids.
+- You may edit node text, inferred_shape, role, orientation, and edges (add/remove/update labels).
+- Prefer minimal edits; only change what is clearly wrong.
+
+GRAPH:
+{graph_json}
+"""
+        payload = {
+            "model": self.model,
+            "response_format": {"type": "json_object"},
+            "temperature": 0.2,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": prompt},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_b64}"}},
+                    ],
+                }
+            ],
+        }
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+        }
+        response = requests.post(
+            f"{self.api_base}/chat/completions",
+            json=payload,
+            headers=headers,
+            timeout=60,
+        )
+        response.raise_for_status()
+        content = response.json()["choices"][0]["message"]["content"]
+        cleaned = safe_json_extract(content)
+        return cleaned if cleaned is not None else strip_code_fences(content)
 
 

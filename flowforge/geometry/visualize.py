@@ -24,7 +24,7 @@ def draw_geometry(image_path: str, geometry: GeometryOutput, output_path: str) -
     if img is None:
         raise ValueError(f"Cannot read image: {image_path}")
 
-    # Draw shapes (bboxes + label)
+    # Draw shapes (bboxes + label + optional text)
     for shape in geometry.shapes:
         x1, y1, x2, y2 = shape.bbox
         color = _shape_color(shape.shape_type)
@@ -40,6 +40,19 @@ def draw_geometry(image_path: str, geometry: GeometryOutput, output_path: str) -
             2,
             lineType=cv2.LINE_AA,
         )
+        if shape.text:
+            text = shape.text
+            text = (text[:40] + "…") if len(text) > 40 else text
+            cv2.putText(
+                img,
+                text,
+                (int(x1) + 4, int(y1) + 18),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.5,
+                (50, 50, 50),
+                2,
+                lineType=cv2.LINE_AA,
+            )
 
     # Draw connectors (polyline if available, otherwise label only)
     row = 0

@@ -154,6 +154,70 @@ def detect_geometry(image_path: str) -> GeometryOutput:
                     )
                 )
 
+            # Simple adjacency candidates: nearest neighbor below/right with overlap
+            def center(b):
+                x1, y1, x2, y2 = b
+                return (0.5 * (x1 + x2), 0.5 * (y1 + y2))
+
+            def overlap_1d(a1, a2, b1, b2):
+                return max(0, min(a2, b2) - max(a1, b1))
+
+            id_to_shape = {s.id: s for s in shapes}
+            shape_items = list(id_to_shape.items())
+            for sid, s in shape_items:
+                sx1, sy1, sx2, sy2 = s.bbox
+                scx, scy = center(s.bbox)
+                best_down = None  # (dist, tid)
+                best_right = None
+                for tid, t in shape_items:
+                    if tid == sid:
+                        continue
+                    tx1, ty1, tx2, ty2 = t.bbox
+                    tcx, tcy = center(t.bbox)
+                    # Down candidate: t below s with x-overlap
+                    if tcy > scy and overlap_1d(sx1, sx2, tx1, tx2) > 0.2 * min(sx2 - sx1, tx2 - tx1):
+                        dist = tcy - scy
+                        if best_down is None or dist < best_down[0]:
+                            best_down = (dist, tid)
+                    # Right candidate: t right of s with y-overlap
+                    if tcx > scx and overlap_1d(sy1, sy2, ty1, ty2) > 0.2 * min(sy2 - sy1, ty2 - ty1):
+                        dist = tcx - scx
+                        if best_right is None or dist < best_right[0]:
+                            best_right = (dist, tid)
+
+                def mid(a, b):
+                    return (int((a[0] + b[0]) / 2), int((a[1] + b[1]) / 2))
+
+                sc = (int(scx), int(scy))
+                if best_down:
+                    tid = best_down[1]
+                    t = id_to_shape[tid]
+                    tc = (int(0.5 * (t.bbox[0] + t.bbox[2])), int(0.5 * (t.bbox[1] + t.bbox[3])))
+                    connectors.append(
+                        ConnectorPrimitive(
+                            id=f"c_{sid}_{tid}_v",
+                            from_id=sid,
+                            to_id=tid,
+                            label=None,
+                            points=[sc, tc],
+                            confidence=0.4,
+                        )
+                    )
+                if best_right:
+                    tid = best_right[1]
+                    t = id_to_shape[tid]
+                    tc = (int(0.5 * (t.bbox[0] + t.bbox[2])), int(0.5 * (t.bbox[1] + t.bbox[3])))
+                    connectors.append(
+                        ConnectorPrimitive(
+                            id=f"c_{sid}_{tid}_h",
+                            from_id=sid,
+                            to_id=tid,
+                            label=None,
+                            points=[sc, tc],
+                            confidence=0.4,
+                        )
+                    )
+
             detector_name = "opencv-enhanced"
         else:
             # Could not read image; fall back
