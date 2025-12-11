@@ -1,3 +1,5 @@
+# flowforge/semantic/openai_adapter.py
+
 import base64
 import json
 import requests
