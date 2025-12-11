@@ -3,6 +3,7 @@
 from typing import Optional, List, Dict, Any
 from .primitives import ShapePrimitive, ConnectorPrimitive, GeometryOutput
 import os
+import numpy as np
 
 
 def detect_geometry(image_path: str, params: Optional[Dict[str, Any]] = None) -> GeometryOutput:
@@ -17,7 +18,19 @@ def detect_geometry(image_path: str, params: Optional[Dict[str, Any]] = None) ->
 
     try:
         import cv2
-        import numpy as np
+
+        def _is_diamond(contour: np.ndarray) -> bool:
+            rect = cv2.minAreaRect(contour)
+            width, height = rect[1]
+            if width <= 0 or height <= 0:
+                return False
+            ratio = min(width, height) / max(width, height)
+            if ratio < 0.6:
+                return False
+            angle = abs(rect[2])
+            if angle > 90:
+                angle = 180 - angle
+            return abs(angle - 45) <= 15
 
         img = cv2.imread(image_path)
         if img is None:
@@ -60,7 +73,9 @@ def detect_geometry(image_path: str, params: Optional[Dict[str, Any]] = None) ->
             n = len(approx)
 
             if n == 4:
-                shape_type = "process_or_decision"
+                shape_type = "process"
+                if _is_diamond(cnt):
+                    shape_type = "decision"
             elif n >= 6:
                 shape_type = "terminator"
             else:

@@ -1,61 +1,34 @@
 flowchart TD
-    s0([Identify and classify
-Failure Conditions;
-Ref. Section 4.2
-Table 1])
-    s1{Is FC severity
-Negligible, MIN?}
-    s2([Redesign])
-    s3{Is FC Severity
-MAJ?}
-    s4[Perform Design &
-Installation Appraisal;
-Ref Section 4.4]
-    s5{Is FC Severity
-HAZ?}
-    s6[Perform a qualitative
-analysis in accordance
-with Section 4.5.2]
-    s7[Perform a qualitative
-analysis in accordance
-with Section 4.5.3 & 4.6]
-    s8[Perform Design &
-Installation Appraisal;
-Ref Section 4.4]
-    s9{Is FC Severity
-CAT?}
-    s10[Perform a qualitative
-analysis in accordance
-with Section 4.5.4 & 4.6]
-    s11[Perform Design &
-Installation Appraisal;
-Ref Section 4.4]
-    s12{Are all
-Failure conditions
-addressed?}
-    s13([Document the
-activities and results;
-Ref section 4.8])
-    s14([Pass])
+    s0([START])
+    s1{Is FC severity Negligible, MIN?}
+    s2{Is FC Severity MAJ?}
+    s3{Is Aircraft Level 1?}
+    s4[Perform Design & Installation Appraisal; Ref Section 4.4]
+    s5[Perform a qualitative analysis in accordance with Section 4.5.2]
+    s6{Is FC Severity HAZ?}
+    s7[Perform a qualitative analysis in accordance with Section 4.5.3 & 4.6]
+    s8{Is FC Severity CAT?}
+    s9[Perform a qualitative analysis in accordance with Section 4.5.4 & 4.6]
+    s10[Perform Design & Installation Appraisal; Ref Section 4.4]
+    s11{Are all Failure conditions addressed?}
+    s12([Document the activities and results; Ref Section 4.8])
+    s13([B])
     s0 --> s1
     s1 --> s2
     s1 --|YES|--> s4
-    s1 --|NO|--> s3
-    s2 --> s0
-    s3 --> s0
-    s3 --|YES|--> s5
-    s3 --|NO|--> s6
-    s4 --> s0
-    s5 --> s7
-    s5 --|YES|--> s8
-    s5 --|NO|--> s9
-    s6 --> s0
-    s7 --> s0
-    s8 --> s0
-    s9 --> s10
-    s9 --|YES|--> s11
-    s9 --|NO|--> s12
-    s10 --> s0
-    s11 --> s0
-    s12 --> s13
-    s12 --|YES|--> s14
+    s2 --> s3
+    s2 --|YES|--> s4
+    s3 --> s4
+    s3 --|YES|--> s4
+    s3 --|NO|--> s5
+    s4 --> s6
+    s5 --> s6
+    s6 --> s7
+    s6 --|YES|--> s8
+    s7 --> s9
+    s8 --> s10
+    s8 --|YES|--> s11
+    s9 --> s12
+    s10 --> s12
+    s11 --> s12
+    s11 --|YES|--> s13

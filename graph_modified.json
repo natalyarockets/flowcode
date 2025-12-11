@@ -1,11 +1,11 @@
 {
   "orientation": "top-down",
-  "start_node": "s2",
+  "start_node": "s0",
   "nodes": {
     "s0": {
       "id": "s0",
       "shape": "terminator",
-      "text": "Identify and classify\nFailure Conditions;\nRef. Section 4.2\nTable 1",
+      "text": "START",
       "out": "s1",
       "out_yes": null,
       "out_no": null
@@ -13,111 +13,103 @@
     "s1": {
       "id": "s1",
       "shape": "decision",
-      "text": "Is FC severity\nNegligible, MIN?",
+      "text": "Is FC severity Negligible, MIN?",
       "out": "s2",
       "out_yes": "s4",
-      "out_no": "s3"
+      "out_no": null
     },
     "s2": {
       "id": "s2",
-      "shape": "terminator",
-      "text": "Redesign",
-      "out": "s0",
-      "out_yes": null,
+      "shape": "decision",
+      "text": "Is FC Severity MAJ?",
+      "out": "s3",
+      "out_yes": "s4",
       "out_no": null
     },
     "s3": {
       "id": "s3",
       "shape": "decision",
-      "text": "Is FC Severity\nMAJ?",
-      "out": "s0",
-      "out_yes": "s5",
-      "out_no": "s6"
+      "text": "Is Aircraft Level 1?",
+      "out": "s4",
+      "out_yes": "s4",
+      "out_no": "s5"
     },
     "s4": {
       "id": "s4",
       "shape": "process",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
-      "out": "s0",
+      "text": "Perform Design & Installation Appraisal; Ref Section 4.4",
+      "out": "s6",
       "out_yes": null,
       "out_no": null
     },
     "s5": {
       "id": "s5",
-      "shape": "decision",
-      "text": "Is FC Severity\nHAZ?",
-      "out": "s7",
-      "out_yes": "s8",
-      "out_no": "s9"
+      "shape": "process",
+      "text": "Perform a qualitative analysis in accordance with Section 4.5.2",
+      "out": "s6",
+      "out_yes": null,
+      "out_no": null
     },
     "s6": {
       "id": "s6",
-      "shape": "process",
-      "text": "Perform a qualitative\nanalysis in accordance\nwith Section 4.5.2",
-      "out": "s0",
-      "out_yes": null,
+      "shape": "decision",
+      "text": "Is FC Severity HAZ?",
+      "out": "s7",
+      "out_yes": "s8",
       "out_no": null
     },
     "s7": {
       "id": "s7",
       "shape": "process",
-      "text": "Perform a qualitative\nanalysis in accordance\nwith Section 4.5.3 & 4.6",
-      "out": "s0",
+      "text": "Perform a qualitative analysis in accordance with Section 4.5.3 & 4.6",
+      "out": "s9",
       "out_yes": null,
       "out_no": null
     },
     "s8": {
       "id": "s8",
-      "shape": "process",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
-      "out": "s0",
-      "out_yes": null,
+      "shape": "decision",
+      "text": "Is FC Severity CAT?",
+      "out": "s10",
+      "out_yes": "s11",
       "out_no": null
     },
     "s9": {
       "id": "s9",
-      "shape": "decision",
-      "text": "Is FC Severity\nCAT?",
-      "out": "s10",
-      "out_yes": "s11",
-      "out_no": "s12"
+      "shape": "process",
+      "text": "Perform a qualitative analysis in accordance with Section 4.5.4 & 4.6",
+      "out": "s12",
+      "out_yes": null,
+      "out_no": null
     },
     "s10": {
       "id": "s10",
       "shape": "process",
-      "text": "Perform a qualitative\nanalysis in accordance\nwith Section 4.5.4 & 4.6",
-      "out": "s0",
+      "text": "Perform Design & Installation Appraisal; Ref Section 4.4",
+      "out": "s12",
       "out_yes": null,
       "out_no": null
     },
     "s11": {
       "id": "s11",
-      "shape": "process",
-      "text": "Perform Design &\nInstallation Appraisal;\nRef Section 4.4",
-      "out": "s0",
-      "out_yes": null,
+      "shape": "decision",
+      "text": "Are all Failure conditions addressed?",
+      "out": "s12",
+      "out_yes": "s13",
       "out_no": null
     },
     "s12": {
       "id": "s12",
-      "shape": "decision",
-      "text": "Are all\nFailure conditions\naddressed?",
-      "out": "s13",
-      "out_yes": "s14",
+      "shape": "terminator",
+      "text": "Document the activities and results; Ref Section 4.8",
+      "out": null,
+      "out_yes": null,
       "out_no": null
     },
     "s13": {
       "id": "s13",
       "shape": "terminator",
-      "text": "Document the\nactivities and results;\nRef section 4.8",
-      "out": null,
-      "out_yes": null,
-      "out_no": null
-    },
-    "s14": {
-      "id": "s14",
-      "shape": "terminator",
-      "text": "Pass",
+      "text": "B",
       "out": null,
       "out_yes": null,
       "out_no": null

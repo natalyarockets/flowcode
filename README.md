@@ -83,3 +83,27 @@ License
 
 This repository does not yet include a license file. Add one before publishing.
 
+Docling integration
+-------------------
+
+Docling-style pipelines already ingest PDFs, extract image blocks, and tag them as `diagram`. Plug into
+that step with:
+
+```python
+from flowforge import extract_flowchart
+from docling.document import Document
+
+doc = Document.from_file("manual.pdf")
+
+flowcharts = [
+    extract_flowchart(block.local_path)
+    for block in doc.blocks
+    if block.type == "image" and block.semantic_type == "diagram"
+]
+```
+
+`extract_flowchart()` returns geometry metadata, FlowGraph JSON, and Mermaid markup so the downstream ETL/RAG
+layer receives structured text, executable logic, and renderable diagrams without redoing OCR, shape detection,
+or LLM orchestration.
+
+Wrap that loop in a helper such as `flowforge.docling.extract_all_flowcharts()` if you want a single-call convenience method.
