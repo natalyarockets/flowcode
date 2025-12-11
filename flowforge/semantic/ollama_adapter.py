@@ -2,6 +2,7 @@ import json
 import base64
 import requests
 from .base import SemanticModel
+from .prompts import calibrate_prompt, review_prompt
 from ..utils.json_sanitize import safe_json_extract, strip_code_fences
 
 
@@ -17,19 +18,7 @@ class OllamaSemanticModel(SemanticModel):
             img_bytes = f.read()
         img_b64 = base64.b64encode(img_bytes).decode("utf-8")
 
-        prompt = (
-            "Output ONLY this JSON:\n"
-            "{\n"
-            '  "orientation": "top-down" | "left-right" | "radial" | "swimlane",\n'
-            '  "median_shape_width": <int>,\n'
-            '  "median_shape_height": <int>,\n'
-            '  "shape_types_present": ["decision"|"process"|"terminator"|"connector", ...],\n'
-            '  "arrow_thickness_px": <int>,\n'
-            '  "estimated_node_count": <int>,\n'
-            '  "arrow_style": "triangle-head" | "line-only" | "block" | "none"\n'
-            "}\n"
-            "Estimate typical node width/height in pixels and approximate node count."
-        )
+        prompt = calibrate_prompt()
         payload = {
             "model": self.model,
             "messages": [
@@ -52,17 +41,7 @@ class OllamaSemanticModel(SemanticModel):
             img_bytes = f.read()
         img_b64 = base64.b64encode(img_bytes).decode("utf-8")
 
-        prompt = (
-            "You are an expert at reading flowcharts. Review and revise the provided FlowGraph JSON "
-            "to better match the image. Return ONLY a single JSON object in the SAME FlowGraph schema:\n"
-            "{\n"
-            '  "orientation": "top-down" | "left-right",\n'
-            '  "start_node": "<id or null>",\n'
-            '  "nodes": { "<id>": {"id":"<id>","shape":"process|decision|terminator|input_output|unknown","text":"...","out":"<id|null>","out_yes":"<id|null>","out_no":"<id|null>"} }\n'
-            "}\n"
-            "Constraints: keep node ids identical; edit text/shape/orientation/pointers if needed; prefer minimal edits.\n\n"
-            "GRAPH:\n" + graph_json
-        )
+        prompt = review_prompt(graph_json)
 
         payload = {
             "model": self.model,
