@@ -5,112 +5,360 @@
     "s0": {
       "id": "s0",
       "shape": "terminator",
-      "text": "START",
-      "out": "s1",
+      "text": "Start",
+      "out": "s24",
       "out_yes": null,
       "out_no": null
     },
     "s1": {
       "id": "s1",
       "shape": "decision",
-      "text": "Is FC severity Negligible, MIN?",
-      "out": "s2",
-      "out_yes": "s4",
+      "text": "Original Card ID 587102?",
+      "out": "s22",
+      "out_yes": "s23",
       "out_no": null
     },
     "s2": {
       "id": "s2",
-      "shape": "decision",
-      "text": "Is FC Severity MAJ?",
-      "out": "s3",
-      "out_yes": "s4",
+      "shape": "connector",
+      "text": "",
+      "out": null,
+      "out_yes": null,
       "out_no": null
     },
     "s3": {
       "id": "s3",
-      "shape": "decision",
-      "text": "Is Aircraft Level 1?",
-      "out": "s4",
-      "out_yes": "s4",
-      "out_no": "s5"
+      "shape": "unknown",
+      "text": "oO",
+      "out": null,
+      "out_yes": null,
+      "out_no": null
     },
     "s4": {
       "id": "s4",
-      "shape": "process",
-      "text": "Perform Design & Installation Appraisal; Ref Section 4.4",
-      "out": "s6",
+      "shape": "connector",
+      "text": "C",
+      "out": "s2",
       "out_yes": null,
       "out_no": null
     },
     "s5": {
       "id": "s5",
-      "shape": "process",
-      "text": "Perform a qualitative analysis in accordance with Section 4.5.2",
-      "out": "s6",
+      "shape": "terminator",
+      "text": "",
+      "out": null,
       "out_yes": null,
       "out_no": null
     },
     "s6": {
       "id": "s6",
-      "shape": "decision",
-      "text": "Is FC Severity HAZ?",
-      "out": "s7",
-      "out_yes": "s8",
+      "shape": "terminator",
+      "text": "",
+      "out": "s3",
+      "out_yes": null,
       "out_no": null
     },
     "s7": {
       "id": "s7",
-      "shape": "process",
-      "text": "Perform a qualitative analysis in accordance with Section 4.5.3 & 4.6",
-      "out": "s9",
+      "shape": "terminator",
+      "text": "Check card status",
+      "out": null,
       "out_yes": null,
       "out_no": null
     },
     "s8": {
       "id": "s8",
-      "shape": "decision",
-      "text": "Is FC Severity CAT?",
-      "out": "s10",
-      "out_yes": "s11",
+      "shape": "unknown",
+      "text": "Check for errors",
+      "out": "s7",
+      "out_yes": null,
       "out_no": null
     },
     "s9": {
       "id": "s9",
-      "shape": "process",
-      "text": "Perform a qualitative analysis in accordance with Section 4.5.4 & 4.6",
-      "out": "s12",
+      "shape": "connector",
+      "text": "",
+      "out": "s8",
       "out_yes": null,
       "out_no": null
     },
     "s10": {
       "id": "s10",
-      "shape": "process",
-      "text": "Perform Design & Installation Appraisal; Ref Section 4.4",
-      "out": "s12",
+      "shape": "terminator",
+      "text": "",
+      "out": "s8",
       "out_yes": null,
       "out_no": null
     },
     "s11": {
       "id": "s11",
-      "shape": "decision",
-      "text": "Are all Failure conditions addressed?",
-      "out": "s12",
-      "out_yes": "s13",
+      "shape": "unknown",
+      "text": "",
+      "out": "s8",
+      "out_yes": null,
       "out_no": null
     },
     "s12": {
       "id": "s12",
-      "shape": "terminator",
-      "text": "Document the activities and results; Ref Section 4.8",
-      "out": null,
+      "shape": "connector",
+      "text": "S",
+      "out": "s9",
       "out_yes": null,
       "out_no": null
     },
     "s13": {
       "id": "s13",
+      "shape": "process",
+      "text": "Check card ID",
+      "out": "s8",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s14": {
+      "id": "s14",
+      "shape": "unknown",
+      "text": "Check card status",
+      "out": "s15",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s15": {
+      "id": "s15",
+      "shape": "unknown",
+      "text": "Check voltage",
+      "out": "s12",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s16": {
+      "id": "s16",
       "shape": "terminator",
-      "text": "B",
-      "out": null,
+      "text": "Check card connections",
+      "out": "s14",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s17": {
+      "id": "s17",
+      "shape": "decision",
+      "text": "Is card functional?",
+      "out": "s15",
+      "out_yes": "s18",
+      "out_no": null
+    },
+    "s18": {
+      "id": "s18",
+      "shape": "terminator",
+      "text": "Replace card",
+      "out": "s14",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s19": {
+      "id": "s19",
+      "shape": "terminator",
+      "text": "Check functionality",
+      "out": "s18",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s20": {
+      "id": "s20",
+      "shape": "process",
+      "text": "Check card ID",
+      "out": "s18",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s21": {
+      "id": "s21",
+      "shape": "connector",
+      "text": "",
+      "out": "s16",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s22": {
+      "id": "s22",
+      "shape": "decision",
+      "text": "Card ID change to 102816201?",
+      "out": "s17",
+      "out_yes": "s23",
+      "out_no": null
+    },
+    "s23": {
+      "id": "s23",
+      "shape": "terminator",
+      "text": "Replace card",
+      "out": "s19",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s24": {
+      "id": "s24",
+      "shape": "connector",
+      "text": "",
+      "out": "s1",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s25": {
+      "id": "s25",
+      "shape": "unknown",
+      "text": "Check card status",
+      "out": "s24",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s26": {
+      "id": "s26",
+      "shape": "connector",
+      "text": "",
+      "out": "s25",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s27": {
+      "id": "s27",
+      "shape": "terminator",
+      "text": "Check connections",
+      "out": "s25",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s28": {
+      "id": "s28",
+      "shape": "decision",
+      "text": "Is card functional?",
+      "out": "s25",
+      "out_yes": "s1",
+      "out_no": "s29"
+    },
+    "s29": {
+      "id": "s29",
+      "shape": "connector",
+      "text": "Check voltage",
+      "out": "s1",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s30": {
+      "id": "s30",
+      "shape": "unknown",
+      "text": "Check connections",
+      "out": "s28",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s31": {
+      "id": "s31",
+      "shape": "connector",
+      "text": "",
+      "out": "s30",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s32": {
+      "id": "s32",
+      "shape": "unknown",
+      "text": "Check voltage",
+      "out": "s29",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s33": {
+      "id": "s33",
+      "shape": "terminator",
+      "text": "Check connections",
+      "out": "s30",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s34": {
+      "id": "s34",
+      "shape": "process",
+      "text": "Check voltage",
+      "out": "s30",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s35": {
+      "id": "s35",
+      "shape": "unknown",
+      "text": "Check status",
+      "out": "s34",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s36": {
+      "id": "s36",
+      "shape": "decision",
+      "text": "Is voltage correct?",
+      "out": "s32",
+      "out_yes": "s35",
+      "out_no": null
+    },
+    "s37": {
+      "id": "s37",
+      "shape": "process",
+      "text": "Check voltage",
+      "out": "s31",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s38": {
+      "id": "s38",
+      "shape": "terminator",
+      "text": "Check status",
+      "out": "s37",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s39": {
+      "id": "s39",
+      "shape": "decision",
+      "text": "Is voltage correct?",
+      "out": "s36",
+      "out_yes": "s1",
+      "out_no": null
+    },
+    "s40": {
+      "id": "s40",
+      "shape": "unknown",
+      "text": "Check voltage",
+      "out": "s35",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s41": {
+      "id": "s41",
+      "shape": "process",
+      "text": "Check voltage",
+      "out": "s38",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s42": {
+      "id": "s42",
+      "shape": "terminator",
+      "text": "End",
+      "out": "s34",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s43": {
+      "id": "s43",
+      "shape": "unknown",
+      "text": "",
+      "out": "s39",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s44": {
+      "id": "s44",
+      "shape": "unknown",
+      "text": "Check voltage",
+      "out": "s42",
       "out_yes": null,
       "out_no": null
     }

@@ -39,6 +39,7 @@ Constraints:
 - Keep node ids identical; do not invent or remove ids.
 - You may edit node text, shape, orientation, start_node, and branch pointers (out/out_yes/out_no).
 - Prefer minimal edits; only change what is clearly wrong.
+- Do not change the topology: never add/remove nodes or edges, only correct labels/shapes.
 
 FlowGraph JSON to review:
 {graph_json}

@@ -1,218 +1,218 @@
 {
   "orientation": "top-down",
-  "start_node": "s4",
+  "start_node": "s0",
   "nodes": {
     "s0": {
       "id": "s0",
       "shape": "terminator",
-      "text": "<>\n()",
-      "out": "s1",
+      "text": "vrs srareie",
+      "out": null,
       "out_yes": null,
       "out_no": null
     },
     "s1": {
       "id": "s1",
       "shape": "terminator",
-      "text": "@",
-      "out": null,
+      "text": "“cs tee Js €33 mentae Z : 20 even \\ q corr \"aa ae & wise 4 + aa vwes_\\ struc cams - cat cae Z Z “sa © oo 22 4 fad a3 O ened oan ALIO}e ALLO® 14. “e272 alte, ptmg tie C) ane ais ain yas to pies) 2) a4 ms ves OA 2 4 a Tae a pirating Atle DT C) | reward ang Sek Per] — BD .s sex C) A wma sume vee tact |, ; 18 an vs \\nenact CC Jerse bad srart ie “2 ay, (20)",
+      "out": "s22",
       "out_yes": null,
       "out_no": null
     },
     "s2": {
       "id": "s2",
-      "shape": "terminator",
-      "text": "(A)",
-      "out": "s0",
+      "shape": "connector",
+      "text": "(% 82¢)",
+      "out": null,
       "out_yes": null,
       "out_no": null
     },
     "s3": {
       "id": "s3",
-      "shape": "decision",
-      "text": "",
-      "out": "s0",
-      "out_yes": "s2",
-      "out_no": "s0"
+      "shape": "unknown",
+      "text": "oO",
+      "out": null,
+      "out_yes": null,
+      "out_no": null
     },
     "s4": {
       "id": "s4",
-      "shape": "process",
-      "text": "Reefer Drugs &\neatullation Appeanal,",
-      "out": "s0",
+      "shape": "connector",
+      "text": "C",
+      "out": "s2",
       "out_yes": null,
       "out_no": null
     },
     "s5": {
       "id": "s5",
       "shape": "terminator",
-      "text": "quatatrer wualyus",
-      "out": "s27",
+      "text": "",
+      "out": null,
       "out_yes": null,
       "out_no": null
     },
     "s6": {
       "id": "s6",
-      "shape": "process",
-      "text": "Pertfowen\nqualtatrer analyes\nnaccorducce yath\neto a tk at",
-      "out": "s27",
+      "shape": "terminator",
+      "text": "",
+      "out": "s3",
       "out_yes": null,
       "out_no": null
     },
     "s7": {
       "id": "s7",
       "shape": "terminator",
-      "text": "OG)",
-      "out": "s8",
+      "text": "soca some vou Tact oa. Pas, 1 tame te cae",
+      "out": null,
       "out_yes": null,
       "out_no": null
     },
     "s8": {
       "id": "s8",
-      "shape": "terminator",
-      "text": "(8)",
-      "out": "s3",
+      "shape": "unknown",
+      "text": "see Waar a vege) Mt fooss AN as \\nacr ana)",
+      "out": "s7",
       "out_yes": null,
       "out_no": null
     },
     "s9": {
       "id": "s9",
-      "shape": "terminator",
-      "text": "(a)",
-      "out": "s7",
+      "shape": "connector",
+      "text": "",
+      "out": "s8",
       "out_yes": null,
       "out_no": null
     },
     "s10": {
       "id": "s10",
-      "shape": "decision",
-      "text": "CD",
-      "out": "s7",
-      "out_yes": "s9",
-      "out_no": "s7"
+      "shape": "terminator",
+      "text": "",
+      "out": "s8",
+      "out_yes": null,
+      "out_no": null
     },
     "s11": {
       "id": "s11",
-      "shape": "process",
-      "text": "extallgbon Appears",
-      "out": "s7",
+      "shape": "unknown",
+      "text": "",
+      "out": "s8",
       "out_yes": null,
       "out_no": null
     },
     "s12": {
       "id": "s12",
-      "shape": "terminator",
-      "text": ". Ne",
-      "out": "s13",
+      "shape": "connector",
+      "text": "S",
+      "out": "s9",
       "out_yes": null,
       "out_no": null
     },
     "s13": {
       "id": "s13",
-      "shape": "terminator",
-      "text": "(8)",
-      "out": "s10",
+      "shape": "process",
+      "text": "ORM ACE Canoe alia ara? aie. OF Sow Sie Aziad. aries, ia? age?",
+      "out": "s8",
       "out_yes": null,
       "out_no": null
     },
     "s14": {
       "id": "s14",
-      "shape": "terminator",
-      "text": "(A)",
-      "out": "s12",
+      "shape": "unknown",
+      "text": "—d ma, : 22 a TERA Cabos asia ari? aise ar",
+      "out": "s15",
       "out_yes": null,
       "out_no": null
     },
     "s15": {
       "id": "s15",
-      "shape": "decision",
-      "text": "",
+      "shape": "unknown",
+      "text": "1 La if. ] ‘mre, oo co 7 je RA banat alia arn? Bie. Bar Au Sia avai. aise ee a 308 fg 29 Ne = eas] Sa) Se ROPLACE CARDS | 5.27",
       "out": "s12",
-      "out_yes": "s14",
-      "out_no": "s12"
+      "out_yes": null,
+      "out_no": null
     },
     "s16": {
       "id": "s16",
-      "shape": "process",
-      "text": "Perform Deuge &\nlretallstion Appt ana\nRet section 44",
-      "out": "s12",
+      "shape": "terminator",
+      "text": "eerusce cans) pity",
+      "out": "s14",
       "out_yes": null,
       "out_no": null
     },
     "s17": {
       "id": "s17",
-      "shape": "terminator",
-      "text": "(a)",
+      "shape": "decision",
+      "text": "",
       "out": "s15",
-      "out_yes": null,
+      "out_yes": "s18",
       "out_no": null
     },
     "s18": {
       "id": "s18",
       "shape": "terminator",
-      "text": "(a)",
-      "out": "s15",
+      "text": "om [Renee (newt cenoa) me g",
+      "out": "s14",
       "out_yes": null,
       "out_no": null
     },
     "s19": {
       "id": "s19",
       "shape": "terminator",
-      "text": "Perform Deuge &\nlretallstion Appt ana\nRet section 44",
-      "out": "s30",
+      "text": "fuecTiOne, ou tenon",
+      "out": "s18",
       "out_yes": null,
       "out_no": null
     },
     "s20": {
       "id": "s20",
-      "shape": "terminator",
-      "text": "(a)",
-      "out": "s19",
+      "shape": "process",
+      "text": "fuectionss | fou? Coane,",
+      "out": "s18",
       "out_yes": null,
       "out_no": null
     },
     "s21": {
       "id": "s21",
-      "shape": "process",
-      "text": "Perform Deuge &\nlretallstion Appt ana\nRet section 44",
-      "out": "s30",
+      "shape": "connector",
+      "text": "",
+      "out": "s16",
       "out_yes": null,
       "out_no": null
     },
     "s22": {
       "id": "s22",
-      "shape": "terminator",
-      "text": "kientity and Lavy\nbahar Condi\nwe de Redesign (e)\nTablet\ny\nPeefowen Dewge &\nep | tation Appear\nRet sechon 4\nNo\ny\nve ae] Beeforn Bevan &\nInstallation Apprara >\nRet Snetion 44\nBettoeen a Perform Dreugn &\nualttative analy intallition Apprana | pe\nFe) uatatere anyus fatstiation Appears | pe\nNo\nYes | quahtative aeuslysn Restorer Deng &\nfn aceetdanee with P| iestatlation Appeanal, |\nNo\n.\ndetrvtins and ewuits,\nBeet wretion A",
-      "out": "s11",
-      "out_yes": null,
+      "shape": "decision",
+      "text": "cane we cmance 70 sarie>",
+      "out": "s17",
+      "out_yes": "s23",
       "out_no": null
     },
     "s23": {
       "id": "s23",
-      "shape": "process",
-      "text": "Descumennt the\nsetevitwes and emits,\nRet wetion 4 &",
-      "out": null,
+      "shape": "terminator",
+      "text": "feat canes ailepe atiee ta, ay llectes alizs. auto). Allee ASE 3. Altea, ‘Aitei. alige, Azz1? selaeaneo ania ribo. ADT Ania?",
+      "out": "s19",
       "out_yes": null,
       "out_no": null
     },
     "s24": {
       "id": "s24",
-      "shape": "terminator",
-      "text": "@",
-      "out": null,
+      "shape": "connector",
+      "text": "",
+      "out": "s1",
       "out_yes": null,
       "out_no": null
     },
     "s25": {
       "id": "s25",
-      "shape": "process",
-      "text": "",
-      "out": "s23",
+      "shape": "unknown",
+      "text": "lene, jagiel a2.43 6.22 ~~",
+      "out": "s24",
       "out_yes": null,
       "out_no": null
     },
     "s26": {
       "id": "s26",
-      "shape": "process",
+      "shape": "connector",
       "text": "",
       "out": "s25",
       "out_yes": null,
@@ -220,89 +220,145 @@
     },
     "s27": {
       "id": "s27",
-      "shape": "process",
-      "text": "Peefoem a\nqualtatrer analyes\nnaccorducce yath\nMeter 44 Rat",
-      "out": "s24",
+      "shape": "terminator",
+      "text": "\\ MAL CARDS [",
+      "out": "s25",
       "out_yes": null,
       "out_no": null
     },
     "s28": {
       "id": "s28",
-      "shape": "process",
+      "shape": "decision",
       "text": "",
-      "out": "s26",
-      "out_yes": null,
-      "out_no": null
+      "out": "s25",
+      "out_yes": "s1",
+      "out_no": "s29"
     },
     "s29": {
       "id": "s29",
-      "shape": "process",
-      "text": "Beetoem 4\nualitabive analy\n6 axccordance with\n\nSeetion 442",
-      "out": "s22",
+      "shape": "connector",
+      "text": "240)",
+      "out": "s1",
       "out_yes": null,
       "out_no": null
     },
     "s30": {
       "id": "s30",
-      "shape": "process",
-      "text": "",
-      "out": "s29",
+      "shape": "unknown",
+      "text": "aes, \\ si “$22 o Dw leas Anos",
+      "out": "s28",
       "out_yes": null,
       "out_no": null
     },
     "s31": {
       "id": "s31",
-      "shape": "process",
-      "text": "Pesform Dewge &\nIntallaen Appar\nRef Section 44",
-      "out": "s16",
+      "shape": "connector",
+      "text": "",
+      "out": "s30",
       "out_yes": null,
       "out_no": null
     },
     "s32": {
       "id": "s32",
-      "shape": "process",
-      "text": "",
-      "out": "s22",
+      "shape": "unknown",
+      "text": "ema cate Series",
+      "out": "s29",
       "out_yes": null,
       "out_no": null
     },
     "s33": {
       "id": "s33",
-      "shape": "process",
-      "text": "",
-      "out": "s32",
+      "shape": "terminator",
+      "text": "menace cans 22032 a2i. cots)",
+      "out": "s30",
       "out_yes": null,
       "out_no": null
     },
     "s34": {
       "id": "s34",
-      "shape": "terminator",
-      "text": "",
-      "out": "s20",
+      "shape": "process",
+      "text": "ano omace 12 iorates),",
+      "out": "s30",
       "out_yes": null,
       "out_no": null
     },
     "s35": {
       "id": "s35",
-      "shape": "terminator",
-      "text": "",
-      "out": "s22",
+      "shape": "unknown",
+      "text": "ase",
+      "out": "s34",
       "out_yes": null,
       "out_no": null
     },
     "s36": {
       "id": "s36",
-      "shape": "process",
-      "text": "Redesign",
-      "out": "s19",
-      "out_yes": null,
+      "shape": "decision",
+      "text": "",
+      "out": "s32",
+      "out_yes": "s35",
       "out_no": null
     },
     "s37": {
       "id": "s37",
       "shape": "process",
-      "text": "Identity and cavuty\n\nBaur Condit\n\nRet Sretion 4 2\nTable 1",
-      "out": "s33",
+      "text": "",
+      "out": "s31",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s38": {
+      "id": "s38",
+      "shape": "terminator",
+      "text": "",
+      "out": "s37",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s39": {
+      "id": "s39",
+      "shape": "decision",
+      "text": "",
+      "out": "s36",
+      "out_yes": "s1",
+      "out_no": null
+    },
+    "s40": {
+      "id": "s40",
+      "shape": "unknown",
+      "text": "2%",
+      "out": "s35",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s41": {
+      "id": "s41",
+      "shape": "process",
+      "text": "« aaree ecreats Dre ae",
+      "out": "s38",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s42": {
+      "id": "s42",
+      "shape": "terminator",
+      "text": "etvevt acne reem cot onore Tes]",
+      "out": "s34",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s43": {
+      "id": "s43",
+      "shape": "unknown",
+      "text": "",
+      "out": "s39",
+      "out_yes": null,
+      "out_no": null
+    },
+    "s44": {
+      "id": "s44",
+      "shape": "unknown",
+      "text": "238",
+      "out": "s42",
       "out_yes": null,
       "out_no": null
     }

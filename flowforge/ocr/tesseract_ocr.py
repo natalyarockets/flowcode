@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Tuple, Dict, Optional
 
 from ..geometry.primitives import GeometryOutput, ShapePrimitive
@@ -11,6 +11,16 @@ class OCRConfig:
     oem: int = 3
     whitelist: Optional[str] = None
     preprocess: bool = True
+    dictionary: Dict[str, str] = field(default_factory=lambda: {
+        "REEFER": "REVIEW",
+        "Peefoem": "Perform",
+        "qUatrer": "quarter",
+        "& eatullation": "& installation",
+        "Peefoem a": "Perform a",
+        "Peefoem": "Perform",
+    })
+    single_line_psm: int = 7
+    single_line_whitelist: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 
 def _safe_imports():
@@ -43,6 +53,27 @@ def _tesseract_config(config: OCRConfig) -> str:
     return " ".join(parts)
 
 
+def _tesseract_config_single_line(config: OCRConfig) -> str:
+    parts = [f"--psm {config.single_line_psm}", f"--oem {config.oem}", "-l", config.lang]
+    if config.single_line_whitelist:
+        parts.append(f"-c tessedit_char_whitelist={config.single_line_whitelist}")
+    return " ".join(parts)
+
+
+def _normalize_text(text: str) -> str:
+    text = text.replace("\n", " ").strip()
+    return " ".join(text.split())
+
+
+def _apply_dictionary(text: str, dictionary: Optional[Dict[str, str]]) -> str:
+    if not dictionary:
+        return text
+    for wrong, right in dictionary.items():
+        if wrong in text:
+            text = text.replace(wrong, right)
+    return text
+
+
 def annotate_ocr(image_path: str, geometry: GeometryOutput, *, config: Optional[OCRConfig] = None) -> GeometryOutput:
     pytesseract, Image, ImageFilter, ImageOps = _safe_imports()
     if pytesseract is None or Image is None:
@@ -52,16 +83,29 @@ def annotate_ocr(image_path: str, geometry: GeometryOutput, *, config: Optional[
     try:
         with Image.open(image_path) as full:
             full = full.convert("RGB")
-            new_shapes: List[ShapePrimitive] = []
             tess_config = _tesseract_config(config)
+            tess_line_config = _tesseract_config_single_line(config)
+            text_cache: Dict[str, str] = {}
+            new_shapes: List[ShapePrimitive] = []
+
             for shape in geometry.shapes:
-                text = shape.text
-                try:
-                    crop = _crop_bbox(full, shape.bbox)
-                    processed = _preprocess_crop(crop, ImageFilter, ImageOps, config)
-                    text = pytesseract.image_to_string(processed, config=tess_config).strip()
-                except Exception:
-                    pass
+                text = shape.text or ""
+                if shape.id in text_cache:
+                    text = text_cache[shape.id]
+                else:
+                    try:
+                        crop = _crop_bbox(full, shape.bbox)
+                        processed = _preprocess_crop(crop, ImageFilter, ImageOps, config)
+                        text = pytesseract.image_to_string(processed, config=tess_config)
+                        if (shape.shape_type or "").lower() == "connector" and len(text.strip()) <= 3:
+                            text = pytesseract.image_to_string(processed, config=tess_line_config)
+                        text = _normalize_text(text)
+                        text = _apply_dictionary(text, config.dictionary)
+                        if shape.shape_type == "connector":
+                            text = text.upper()
+                    except Exception:
+                        text = shape.text or ""
+                    text_cache[shape.id] = text
                 new_shapes.append(
                     ShapePrimitive(
                         id=shape.id,
@@ -108,7 +152,8 @@ def detect_yes_no_near_decisions(
                     try:
                         crop = full.crop(box)
                         processed = _preprocess_crop(crop, ImageFilter, ImageOps, config)
-                        return pytesseract.image_to_string(processed, config=tess_config).strip().upper()
+                        text = pytesseract.image_to_string(processed, config=tess_config)
+                        return _normalize_text(text).upper()
                     except Exception:
                         return ""
 

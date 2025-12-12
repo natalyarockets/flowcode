@@ -54,45 +54,39 @@ def draw_geometry(image_path: str, geometry: GeometryOutput, output_path: str) -
                 lineType=cv2.LINE_AA,
             )
 
-    # Draw connectors (polyline if available, otherwise label only)
-    row = 0
+    # Draw connectors (lines/arrows)
+    offset_row = 0
     for conn in geometry.connectors:
-        poly_color = (255, 0, 0)  # bright blue for connectors
+        poly_color = (255, 0, 0)
+        text = f"{conn.id}:{conn.from_id}->{conn.to_id}"
         if conn.points and len(conn.points) >= 2:
-            pts = [(int(x), int(y)) for (x, y) in conn.points]
-            for i in range(len(pts) - 1):
-                cv2.line(img, pts[i], pts[i + 1], poly_color, 2)
-            # Label near first point
-            lx, ly = pts[0]
-            text = f"{conn.id}:{conn.from_id}->{conn.to_id}"
-            if conn.label:
-                text += f" [{conn.label}]"
-            cv2.putText(
+            start = (int(conn.points[0][0]), int(conn.points[0][1]))
+            end = (int(conn.points[-1][0]), int(conn.points[-1][1]))
+            cv2.arrowedLine(
                 img,
-                text,
-                (int(lx) + 5, int(ly) - 5),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.5,
+                start,
+                end,
                 poly_color,
-                1,
-                lineType=cv2.LINE_AA,
+                2,
+                tipLength=0.2,
+                line_type=cv2.LINE_AA,
             )
+            label_pos = (start[0] + 5, max(0, start[1] - 5))
         else:
-            # Fallback: stack labels on top-left
-            text = f"{conn.id}:{conn.from_id}->{conn.to_id}"
-            if conn.label:
-                text += f" [{conn.label}]"
-            cv2.putText(
-                img,
-                text,
-                (10, 30 + 18 * row),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.55,
-                poly_color,
-                1,
-                lineType=cv2.LINE_AA,
-            )
-            row += 1
+            label_pos = (10, 30 + 18 * offset_row)
+            offset_row += 1
+        if conn.label:
+            text += f" [{conn.label}]"
+        cv2.putText(
+            img,
+            text,
+            label_pos,
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.5,
+            poly_color,
+            1,
+            lineType=cv2.LINE_AA,
+        )
 
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     cv2.imwrite(output_path, img)
